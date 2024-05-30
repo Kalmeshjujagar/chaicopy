@@ -19,7 +19,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/profile-pic.png" sizes="any" />
+        <link rel="icon" href="@/public/profile-pic.png" sizes="any" />
       </head>
       <AuthProvider>
         <body className={inter.className}>
