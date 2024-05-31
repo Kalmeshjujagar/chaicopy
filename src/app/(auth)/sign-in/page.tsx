@@ -6,15 +6,17 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import { signInSchema } from "@/schemas/signInSchema";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { IconBrandGithub, IconBrandGoogle } from "@tabler/icons-react";
+import { Loader2 } from "lucide-react";
 
 export default function SignInForm() {
   const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     // Add dark mode class to the body
@@ -31,11 +33,14 @@ export default function SignInForm() {
 
   const { toast } = useToast();
   const onSubmit = async (data: z.infer<typeof signInSchema>) => {
+    setIsSubmitting(true);
     const result = await signIn("credentials", {
       redirect: false,
       identifier: data.identifier,
       password: data.password,
     });
+
+    setIsSubmitting(false);
 
     if (result?.error) {
       if (result.error === "CredentialsSignin") {
@@ -59,22 +64,21 @@ export default function SignInForm() {
   };
 
   return (
-    <>
-      <div className="flex-col mt-10 max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
-        <h2 className="text-center font-bold text-xl text-neutral-700 dark:text-neutral-300">
-          Kalmeshjujagar.com
+    <div className="min-h-screen flex items-center justify-center bg-white dark:bg-black">
+      <div className="flex-col items-center content-center max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
+        <h2 className="font-bold text-xl text-neutral-800 text-center dark:text-neutral-200">
+          Kalmeshjujagar.com : )
         </h2>
-        <br />
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <LabelInputContainer className="mb-4">
+        <form className="mx-10 my-8" onSubmit={form.handleSubmit(onSubmit)}>
+          <div className="mb-4">
             <Label htmlFor="identifier">Email or Username</Label>
             <Input
               id="identifier"
               placeholder="Enter Username or Email"
               {...form.register("identifier")}
             />
-          </LabelInputContainer>
-          <LabelInputContainer className="mb-4">
+          </div>
+          <div className="mb-4">
             <Label htmlFor="password">Password</Label>
             <Input
               id="password"
@@ -82,13 +86,21 @@ export default function SignInForm() {
               type="password"
               {...form.register("password")}
             />
-          </LabelInputContainer>
+          </div>
           <button
             className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
             type="submit"
+            disabled={isSubmitting}
           >
-            Sign In &rarr;
-            <BottomGradient />
+            {isSubmitting ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Please wait
+              </>
+            ) : (
+              "Sign In"
+            )}
+            <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 opacity-0 group-hover/btn:opacity-10 transition-opacity duration-300"></div>
           </button>
           <div className="flex flex-col items-center mt-3 space-y-2">
             <Link href="/sign-up">
@@ -109,7 +121,7 @@ export default function SignInForm() {
               <span className="text-neutral-700 dark:text-neutral-300 text-sm">
                 GitHub
               </span>
-              <BottomGradient />
+              <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 opacity-0 group-hover/btn:opacity-10 transition-opacity duration-300"></div>
             </button>
             <button
               className="relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
@@ -120,14 +132,15 @@ export default function SignInForm() {
               <span className="text-neutral-700 dark:text-neutral-300 text-sm">
                 Google
               </span>
-              <BottomGradient />
+              <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 opacity-0 group-hover/btn:opacity-10 transition-opacity duration-300"></div>
             </button>
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 }
+
 
 const BottomGradient = () => {
   return (
