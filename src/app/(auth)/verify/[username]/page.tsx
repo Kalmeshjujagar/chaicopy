@@ -23,8 +23,8 @@ import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 
 export default function VerifyAccount() {
+  
   useEffect(() => {
-    // Add dark mode class to the body
     document.body.classList.add("dark");
   }, []);
 
