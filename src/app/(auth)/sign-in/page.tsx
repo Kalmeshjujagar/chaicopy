@@ -104,7 +104,7 @@ export default function SignInForm() {
           <div className="flex flex-col items-center mt-3 space-y-2">
             <Link href="/sign-up">
               <p className="ml-4 text-neutral-500 dark:text-neutral-500">
-                Don't have an account?{" "}
+                Don't have an account?
                 <span className="text-blue-600 cursor-pointer">Sign up</span>
               </p>
             </Link>
