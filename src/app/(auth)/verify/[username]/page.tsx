@@ -24,9 +24,9 @@ import { Loader2 } from "lucide-react";
 
 export default function VerifyAccount() {
   
-  useEffect(() => {
-    document.body.classList.add("dark");
-  }, []);
+  // useEffect(() => {
+  //   document.body.classList.add("dark");
+  // }, []);
 
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);

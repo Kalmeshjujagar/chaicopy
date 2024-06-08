@@ -27,9 +27,9 @@ export default function SignUpForm() {
   const router = useRouter();
   const { toast } = useToast();
 
-  useEffect(() => {
-    document.body.classList.add("dark");
-  }, []);
+  // useEffect(() => {
+  //   document.body.classList.add("dark");
+  // }, []);
 
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),

@@ -1,4 +1,3 @@
-import RecentProjects from '@/components/RecentProjects'
 import React from 'react'
 
 const portfolio = () => {

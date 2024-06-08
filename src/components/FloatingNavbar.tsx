@@ -1,5 +1,5 @@
-// components/ui/FloatingNavbarUi.tsx
 "use client";
+
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { cn } from "@/lib/utils";
 import React, { useState } from 'react';
@@ -11,7 +11,7 @@ import { User } from 'next-auth';
 export const FloatingNav = ({ navItems, className }: { navItems: { name: string; link: string; icon?: JSX.Element; }[]; className?: string; }) => {
   const { scrollYProgress } = useScroll();
   const { data: session } = useSession();
-  const user : User = session?.user;
+  const  User = session?.user; //  const user : User = session?.user;
   const [visible, setVisible] = useState(true);
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {

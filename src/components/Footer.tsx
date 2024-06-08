@@ -13,6 +13,8 @@ const Footer = () => {
           src="/footer-grid.svg"
           alt="grid"
           className="w-full h-full opacity-50 "
+          width={30} // Adjust the width as needed
+          height={20}
         />
       </div>
 

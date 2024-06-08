@@ -12,10 +12,6 @@ export const CanvasRevealEffect = ({
   dotSize,
   showGradient = true,
 }: {
-  /**
-   * 0.1 - slower
-   * 1.0 - faster
-   */
   animationSpeed?: number;
   opacities?: number[];
   colors?: number[][];
@@ -255,7 +251,7 @@ const ShaderMaterial = ({
   };
 
   // Shader material
-  const material = useMemo(() => {
+  const material = (() => {
     const materialObject = new THREE.ShaderMaterial({
       vertexShader: `
       precision mediump float;
@@ -277,9 +273,10 @@ const ShaderMaterial = ({
       blendSrc: THREE.SrcAlphaFactor,
       blendDst: THREE.OneFactor,
     });
-
+  
     return materialObject;
-  }, [size.width, size.height, source]);
+  }); //[size.width, size.height,  getUniforms, source] removed form dependencies
+  
 
   return (
     <mesh ref={ref as any}>
