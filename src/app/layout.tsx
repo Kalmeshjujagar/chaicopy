@@ -24,7 +24,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head>
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem  disableTransitionOnChange>
+      <ThemeProvider attribute="class" defaultTheme="dark" >
       <AuthProvider>
         <body className={inter.className}>
           {children}

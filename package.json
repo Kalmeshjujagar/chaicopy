@@ -31,8 +31,6 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.10",
-    "embla-carousel-autoplay": "^8.0.0-rc17",
-    "embla-carousel-react": "^8.0.0-rc17",
     "framer-motion": "^11.2.10",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.365.0",

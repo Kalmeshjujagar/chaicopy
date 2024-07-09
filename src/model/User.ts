@@ -10,7 +10,7 @@ export interface User extends Document {
   isVerified: boolean;
 }
 
-// Updated User schema
+// Updated User schema Problem: make uppercase and lowercase as same in username, now it it not reconsing 
 const UserSchema: Schema<User> = new mongoose.Schema({
   username: {
     type: String,

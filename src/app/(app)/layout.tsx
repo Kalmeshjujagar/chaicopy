@@ -1,4 +1,5 @@
 import { FloatingNav } from '@/components/FloatingNavbar';
+import { ThemeProvider } from '@/components/ui/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import AuthProvider from '@/context/AuthProvider';
 
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <link rel="icon" href="/favicon.ico" />
       </head>
       <time dateTime="2016-10-25" suppressHydrationWarning />
+      <ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
       <AuthProvider>
         <body className=" bg-black-100">
           <FloatingNav navItems={navItems} />
@@ -29,6 +31,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <Toaster />
         </body>
       </AuthProvider>
+      </ThemeProvider>
     </html>
   );
 }

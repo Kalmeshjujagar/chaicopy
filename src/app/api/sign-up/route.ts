@@ -1,7 +1,7 @@
 import dbConnect from '@/lib/dbConnect';
 import UserModel from '@/model/User';
 import bcrypt from 'bcryptjs';
-import { sendVerificationEmail } from '@/helpers/sendVerificationEmail';
+import { sendVerificationEmail } from '@/lib/sendVerificationEmail';
 
 export async function POST(request: Request) {
   await dbConnect();
@@ -55,8 +55,6 @@ export async function POST(request: Request) {
         verifyCode,
         verifyCodeExpiry: expiryDate,
         isVerified: false,
-        isAcceptingMessages: true,
-        messages: [],
       });
 
       await newUser.save();
